@@ -1,0 +1,52 @@
+- AvatarControl = require "./avatar-control"
+- FriendsControl = require "./friends-control"
+- PropControl = require "./prop-control"
+- RoomList = require "./room-list"
+
+chateau
+  viewport
+    = @canvas
+    word-area
+      = @words
+
+  actions
+    form(submit=@saySubmit)
+      input
+      button Speak
+
+  tab-drawer
+    - stats.increment "render.tab-drawer"
+    = RoomList this
+
+    log-control
+      - stats.increment "render.log-control"
+      tab(click=@toggleOpen) Log
+      = @logsElement
+
+    = PropControl(this)
+
+    sound-control
+      tab(click=@toggleOpen) Sounds
+      h2 Coming Soon!
+
+    = AvatarControl(this)
+
+    = FriendsControl(this)
+
+    account-control
+      tab(click=@toggleOpen) Account
+
+      form(submit=@displayNameFormSubmit class=@displayNameFormClass)
+        micro-controls
+          button.accept
+          button.cancel(click=@resetDisplayNameInput)
+        label
+          h1 Display Name
+          input(value=@displayNameInput)
+
+      label
+        h1 Account ID
+        span= @currentAccountId
+
+      label
+        button(click=@logout) Sign Out

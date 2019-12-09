@@ -1,0 +1,6 @@
+- FriendTemplate = require "./friend"
+
+friends-control.wide
+  tab(click=@toggleOpen) Friends
+
+  = @friends

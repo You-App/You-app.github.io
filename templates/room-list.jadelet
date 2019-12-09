@@ -1,0 +1,8 @@
+room-control.wide
+  tab(click=@toggleOpen) Rooms
+
+  actions
+    button(click=@createRoom) + New
+
+  rooms
+    = @rooms

@@ -1,0 +1,7 @@
+friend(class=@onlineStatus)
+  img.profile(src=@profilePhotoURL)
+  online-status
+  info
+    .name= @name
+    .status-message= @status
+  time.last-seen= @lastSeen

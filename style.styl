@@ -1,0 +1,341 @@
+*
+  box-sizing: border-box
+
+html, body
+  height: 100%
+
+body
+  font-family: Sans-Serif
+  font-size: 14px
+  line-height: 18px
+  margin: 0
+  overflow: hidden
+
+input
+  max-width: 100%
+
+label
+  display: block
+  margin: 1em 0
+
+  > h1
+    font-size: 1em
+    line-height: 20px
+    margin: 0 0 4px 0
+
+  > h2
+    display: inline-block
+    font-size: 1em
+    margin: 0 4px 0 0
+
+  > input[type="radio"]
+    margin-right: 4px
+    vertical-align: baseline
+
+form
+  position: relative
+
+  > micro-controls
+    display: none
+
+    > button
+      font-size: 10px
+      margin-right: 4px
+
+      &:last-child
+        margin-right: 0
+
+      &.cancel
+        color: red
+        &::before
+          content: "❌"
+
+      &.accept
+        color: green
+        &::before
+          content: "✔️️"
+
+  &.changed
+    > micro-controls
+      display: block
+      position: absolute
+      top: 0
+      right: 0
+
+tab-drawer
+  display: block
+  height: 100%
+  left: 100%
+  position: absolute
+
+  > *
+    background-color: white
+    border-left: 1px solid gray
+    height: 100%
+    left: 0
+    position: absolute
+    transition-property: left, z-index
+    transition-duration: 0.25s
+    width: 200px
+    z-index: 0
+
+    &.wide
+      width: 300px
+
+    > tab
+      background-color: white
+      border: 1px solid black
+      border-right: 0
+      border-bottom-left-radius: 4px
+      border-top-left-radius: 4px
+      cursor: pointer
+      display: block
+      font-size: 24px
+      font-weight: bold
+      height: 48px
+      line-height: 48px
+      padding: 0 0.5em
+      position: absolute
+      right: 100%
+      width: 150px
+      z-index: 0
+
+      &::before
+        content: "<\a0"
+
+  > *.show
+    left: -200px
+    z-index: 60
+
+    &.wide
+      left: -300px
+
+    > tab
+      &::before
+        content: ">\a0"
+
+  > *:first-child > tab
+    border-top: 0
+    border-top-left-radius: 0
+
+  for row in 1 2 3 4 5 6 7 8 9
+    > *:nth-child({row}) > tab
+      top: 47px * (row - 1)
+
+chateau
+  display: flex
+  height: 100%
+  position: relative
+
+  > viewport
+    flex: 0 0 auto
+    height: 540px
+    margin: auto
+    position: relative
+    width: 960px
+
+    > word-area
+      display: block
+      height: 100%
+      left: 0
+      pointer-events: none
+      position: absolute
+      top: 0
+      width: 100%
+
+      > words
+        border: 1px solid black
+        border-radius: 4px
+        background-color: white
+        padding: 0.5em
+        position: absolute
+        display: inline-block
+
+  > actions
+    position: absolute
+    bottom: 0
+    left: 0
+
+    > form
+      display: inline-block
+      margin-right: 1em
+
+avatar-control
+  display: block
+
+  > avatars
+    display: block
+    height: 100%
+    overflow: auto
+    padding: 1em
+
+    > avatar
+      display: block
+      margin-bottom: 1em
+
+      &:hover
+        background-color: lightyellow
+
+      > img
+        max-width: 100%
+
+prop-control
+  display: block
+
+  > props
+    display: block
+    height: 100%
+    overflow: auto
+    padding: 1em
+
+    > prop
+      display: block
+      margin-bottom: 1em
+
+      &:hover
+        background-color: lightyellow
+
+      > img
+        max-width: 100%
+
+room-control
+  padding: 1em
+
+  > actions
+    display: block
+    margin-bottom: 1em
+
+  > rooms
+    display: block
+
+    > room
+      display: flex
+      margin-bottom: 1em
+      width: 200px
+
+      > img
+        border: 1px solid gray
+        width: 82px
+        height: 47px
+        flex: 0 0 auto
+
+      > div.details
+        flex: 1 1 auto
+        margin: auto
+        padding-left: 1em
+
+sound-control
+  display: block
+  padding: 1em
+
+  > h2
+    margin-top: 0
+
+account-control
+  display: block
+  padding: 1em
+  padding-top: 0
+
+friends-control
+  display: block
+
+  > friends
+    display: block
+    height: 100%
+    overflow: auto
+    padding: 1em
+
+    > friend
+      border-bottom: 1px solid gray
+      display: flex
+      margin-bottom: 0.5em
+      position: relative
+
+      > img.profile
+        border: 2px solid gray
+        border-radius: 16px
+        flex: 0 0 auto
+        height: 32px
+        margin: 0 0.5em 0.5em 0
+        width: 32px
+
+      > online-status
+        background-color: white
+        border: 1px solid gray
+        border-radius: 6px
+        height: 12px
+        left: 20px
+        position: absolute
+        top: 20px
+        width: 12px
+
+      &.online > online-status
+        background-color: green
+        border: none
+
+      > info
+        flex: 1 1 auto
+        > .status-message
+          color: gray
+
+      > time.last-seen
+        color: gray
+        position: absolute
+        right: 0
+        top: 0
+
+log-control
+  display: block
+
+  > logs
+    display: block
+    height: 100%
+    overflow: auto
+    padding: 1em
+
+    > log
+      display: block
+
+scene
+  display: block
+  height: 540px
+  position: relative
+  width: 960px
+
+  > img.object
+    position: absolute
+    transition-duration: 0.25s
+    transition-property: transform
+
+    &.dragging
+      transition-duration: 0s
+
+form#login
+  display: block
+  padding: 2em
+
+  > p
+    max-width: 460px
+
+  > img.splash
+    margin-top: 1em
+    max-width: 460px
+
+#feedback
+  background-color: rgb(103, 58, 183)
+  border: 2px solid white
+  border-top: 0
+  box-shadow: 1px 2px 5px black
+  color: white
+  font-weight: bold
+  padding: 4px 0.5em
+  position: absolute
+  right: 200px
+  text-decoration: none
+  text-shadow: 1px 1px black
+  top: 0
+  transition-property: padding-top
+  transition-duration: 0.25s
+
+  &:hover
+    padding-top: 1em
