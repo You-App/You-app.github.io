@@ -1,26 +1,154 @@
-<!DOCTYPE html> 
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="Help" href="./docs/">
-    <link rel="Progenitor" href="..\editor\index.htm">
-    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
-  </head>
-  <body>
-    <script>
-      xhr = new XMLHttpRequest;
-url = "master.json";
-xhr.open("GET", url, true);
-xhr.responseType = "json";
-xhr.onload = function() {
-  (function(PACKAGE) {
-    var src = "(function() {\n  var annotateSourceURL, cacheFor, circularGuard, defaultEntryPoint, fileSeparator, generateRequireFn, global, isPackage, loadModule, loadPackage, loadPath, normalizePath, publicAPI, rootModule, startsWith,\n    __slice = [].slice;\n\n  fileSeparator = '/';\n\n  global = self;\n\n  defaultEntryPoint = \"main\";\n\n  circularGuard = {};\n\n  rootModule = {\n    path: \"\"\n  };\n\n  loadPath = function(parentModule, pkg, path) {\n    var cache, localPath, module, normalizedPath;\n    if (startsWith(path, '/')) {\n      localPath = [];\n    } else {\n      localPath = parentModule.path.split(fileSeparator);\n    }\n    normalizedPath = normalizePath(path, localPath);\n    cache = cacheFor(pkg);\n    if (module = cache[normalizedPath]) {\n      if (module === circularGuard) {\n        throw \"Circular dependency detected when requiring \" + normalizedPath;\n      }\n    } else {\n      cache[normalizedPath] = circularGuard;\n      try {\n        cache[normalizedPath] = module = loadModule(pkg, normalizedPath);\n      } finally {\n        if (cache[normalizedPath] === circularGuard) {\n          delete cache[normalizedPath];\n        }\n      }\n    }\n    return module.exports;\n  };\n\n  normalizePath = function(path, base) {\n    var piece, result;\n    if (base == null) {\n      base = [];\n    }\n    base = base.concat(path.split(fileSeparator));\n    result = [];\n    while (base.length) {\n      switch (piece = base.shift()) {\n        case \"..\":\n          result.pop();\n          break;\n        case \"\":\n        case \".\":\n          break;\n        default:\n          result.push(piece);\n      }\n    }\n    return result.join(fileSeparator);\n  };\n\n  loadPackage = function(pkg) {\n    var path;\n    path = pkg.entryPoint || defaultEntryPoint;\n    return loadPath(rootModule, pkg, path);\n  };\n\n  loadModule = function(pkg, path) {\n    var args, content, context, dirname, file, module, program, values;\n    if (!(file = pkg.distribution[path])) {\n      throw \"Could not find file at \" + path + \" in \" + pkg.name;\n    }\n    if ((content = file.content) == null) {\n      throw \"Malformed package. No content for file at \" + path + \" in \" + pkg.name;\n    }\n    program = annotateSourceURL(content, pkg, path);\n    dirname = path.split(fileSeparator).slice(0, -1).join(fileSeparator);\n    module = {\n      path: dirname,\n      exports: {}\n    };\n    context = {\n      require: generateRequireFn(pkg, module),\n      global: global,\n      module: module,\n      exports: module.exports,\n      PACKAGE: pkg,\n      __filename: path,\n      __dirname: dirname\n    };\n    args = Object.keys(context);\n    values = args.map(function(name) {\n      return context[name];\n    });\n    Function.apply(null, __slice.call(args).concat([program])).apply(module, values);\n    return module;\n  };\n\n  isPackage = function(path) {\n    if (!(startsWith(path, fileSeparator) || startsWith(path, \".\" + fileSeparator) || startsWith(path, \"..\" + fileSeparator))) {\n      return path.split(fileSeparator)[0];\n    } else {\n      return false;\n    }\n  };\n\n  generateRequireFn = function(pkg, module) {\n    var fn;\n    if (module == null) {\n      module = rootModule;\n    }\n    if (pkg.name == null) {\n      pkg.name = \"ROOT\";\n    }\n    if (pkg.scopedName == null) {\n      pkg.scopedName = \"ROOT\";\n    }\n    fn = function(path) {\n      var otherPackage;\n      if (typeof path === \"object\") {\n        return loadPackage(path);\n      } else if (isPackage(path)) {\n        if (!(otherPackage = pkg.dependencies[path])) {\n          throw \"Package: \" + path + \" not found.\";\n        }\n        if (otherPackage.name == null) {\n          otherPackage.name = path;\n        }\n        if (otherPackage.scopedName == null) {\n          otherPackage.scopedName = \"\" + pkg.scopedName + \":\" + path;\n        }\n        return loadPackage(otherPackage);\n      } else {\n        return loadPath(module, pkg, path);\n      }\n    };\n    fn.packageWrapper = publicAPI.packageWrapper;\n    fn.executePackageWrapper = publicAPI.executePackageWrapper;\n    return fn;\n  };\n\n  publicAPI = {\n    generateFor: generateRequireFn,\n    packageWrapper: function(pkg, code) {\n      return \";(function(PACKAGE) {\\n  var src = \" + (JSON.stringify(PACKAGE.distribution.main.content)) + \";\\n  var Require = new Function(\\\"PACKAGE\\\", \\\"return \\\" + src)({distribution: {main: {content: src}}});\\n  var require = Require.generateFor(PACKAGE);\\n  \" + code + \";\\n})(\" + (JSON.stringify(pkg, null, 2)) + \");\";\n    },\n    executePackageWrapper: function(pkg) {\n      return publicAPI.packageWrapper(pkg, \"require('./\" + pkg.entryPoint + \"')\");\n    },\n    loadPackage: loadPackage\n  };\n\n  if (typeof exports !== \"undefined\" && exports !== null) {\n    module.exports = publicAPI;\n  } else {\n    global.Require = publicAPI;\n  }\n\n  startsWith = function(string, prefix) {\n    return string.lastIndexOf(prefix, 0) === 0;\n  };\n\n  cacheFor = function(pkg) {\n    if (pkg.cache) {\n      return pkg.cache;\n    }\n    Object.defineProperty(pkg, \"cache\", {\n      value: {}\n    });\n    return pkg.cache;\n  };\n\n  annotateSourceURL = function(program, pkg, path) {\n    return \"\" + program + \"\\n//# sourceURL=\" + pkg.scopedName + \"/\" + path;\n  };\n\n  return publicAPI;\n\n}).call(this);\n";
-    var Require = new Function("PACKAGE", "return " + src)({distribution: {main: {content: src}}});
-    var require = Require.generateFor(PACKAGE);
-    require('./' + PACKAGE.entryPoint);
-  })(xhr.response)
-};
-xhr.send();
-    </script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="icon" type="image/png" href="https://avatars.mds.yandex.net/get-dialogs/998463/bb8671ec69da2698c9dd/orig">
+
+  <meta http-equiv="refresh" content="0; URL=https://play.google.com/store/apps/details?id=online.creators.chat">
+	
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(55979509, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/55979509" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0080ff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+h1 {
+  color: #f1c40f;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+p {
+  color: #f1c40f;
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+.btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+.third {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 2px 0 #3498db inset, 0 0 8px 1px #3498db;
+}
+.sb-img {
+  max-width: 281px; 
+  height: 281px;
+}
+</style>
+	
+</head>
+<body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<img src="" class="sb-img js-img" data-hastag="gachalife"/>
+<p>YOU</p>
+<!-- partial:index.partial.html -->
+<button class="btn third"><a style="color: #ffffff" href="https://play.google.com/store/apps/details?id=online.creators.chat" class="twitter-follow-button" data-show-count="false" data-size="large">New chat</a></button>
+<p>Inspiration for new ways to make interactive!</p>
+
+<!-- partial -->
+  
+  <script type="text/javascript">
+$(document).ready(function(){
+  var photos,
+      i = 0,
+      id = null,
+      newPhotos;
+  
+  ajaxCall();
+  
+  function ajaxCall() {
+    var hastag = $(".js-img").data("hastag")
+    
+    $.ajax({
+      url: "https://www.instagram.com/explore/tags/"+hastag+"/?__a=1",
+      dataType: "json",
+      success: function(data) {
+        photos = data.graphql.hashtag.edge_hashtag_to_media.edges;
+        setTimeout(start, 500);
+      },
+      error: function() {
+        setTimeout(ajaxCall, 60000);
+      }
+    });
+  }
+  function start() {
+    i = 0;
+    $(".js-img").attr("src", photos[i].node.display_url);
+    i++;
+    id = setInterval(function(){
+      $(".js-img").attr("src", photos[i].node.display_url);
+      i++;
+      if(i === photos.length) {
+        i = 0;
+        ajaxCall();
+        clearInterval(id);
+      }
+    }, 1000);
+  }
+});
+</script>
+</body>
 </html>
