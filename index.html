@@ -1,154 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Chat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="icon" type="image/png" href="https://avatars.mds.yandex.net/get-dialogs/998463/bb8671ec69da2698c9dd/orig">
 
-  <meta http-equiv="refresh" content="0; URL=https://play.google.com/store/apps/details?id=online.creators.chat">
-	
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <meta charset='utf-8'>
+    <title>SVG3DTagCloud - Example 1</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+    <script src='js/jquery.svg3dtagcloud.min.js'></script>
 
-   ym(55979509, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/55979509" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-	
-<style>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background: #0080ff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-}
-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  align-content: center;
-}
-h1 {
-  color: #f1c40f;
-  font-size: 1rem;
-  text-transform: uppercase;
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
-}
-p {
-  color: #f1c40f;
-  font-size: 0.8rem;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-}
-.btn {
-  box-sizing: border-box;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 2px solid #e74c3c;
-  border-radius: 0.6em;
-  color: #e74c3c;
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-}
-.btn:hover, .btn:focus {
-  color: #fff;
-  outline: 0;
-}
-.third {
-  border-color: #3498db;
-  color: #fff;
-  box-shadow: 0 0 2px 0 #3498db inset, 0 0 8px 1px #3498db;
-}
-.sb-img {
-  max-width: 281px; 
-  height: 281px;
-}
-</style>
-	
+    <link href='https://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <style type='text/css'>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, font, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            background-color: rgb(17, 17, 17);
+        }
+    </style>
+
+    <script>
+    	$( document ).ready( function() {
+var entries = [ 
+   
+    { image: 'http://nkunited.de/ExternalImages/icons/Basket.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Lorem ipsum' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Briefcase.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Dolor sit amet' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Brush.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Consetetur sadipscing' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Calendar.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Sed diam' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Camera.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'At vero' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Cassette.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Nonumy eirmod' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Clock.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Stet clita' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Cloud_Download.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Justo duo' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Cloud_Upload.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Ut wisi enim' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Coffee.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Minim veniam' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Comments.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Quis nostrud' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Credit_Card.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Exerci tation' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Diary.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Duis autem' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Document.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Vel eum iriure' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Envelope.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Dolor in hendrerit' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Eraser.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'In vulputate' },
+    { image: 'http://nkunited.de/ExternalImages/icons/File_Browser.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Velit esse' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Games.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Molestie consequat' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Headphones.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Vel illum' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Heart.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Dolore eu' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Home.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Feugiat nulla' },
+    { image: 'http://nkunited.de/ExternalImages/icons/ID.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Facilisis at vero' },
+    { image: 'http://nkunited.de/ExternalImages/icons/iPod.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Eros et accumsa' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Key.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Et iusto odio' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Location.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Dignissim qui' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Location_Map.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Blandit praesent' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Map.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Nam liber' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Megaphone.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Soluta nobis' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Message.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Magna aliquam' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Microphone.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Duis autem' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Mobile.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Lori novis' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Money.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Meno eqiam' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Padlock.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Meno equox' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Pencil.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Iri orem' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Photo.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Orel pas' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Polaroid.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Psi sit' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Printer.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Amet et quam' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Record.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Molare cons' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Save.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Digi tal' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Scissors.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Felenope liber' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Spanner.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Officia dolor' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Toolbox.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Autem insto' },
+    { image: 'http://nkunited.de/ExternalImages/icons/Umbrella.png', width: '50', height: '50', url: 'https://socialfeeds.github.io/', target: '_top', tooltip: 'Veniam isictus' }
+];
+var settings = {
+    entries: entries,
+    width: 1280,
+    height: 1280,
+    radius: '65%',
+    radiusMin: 75,
+    bgDraw: true,
+    bgColor: '#111',
+    opacityOver: 1.00,
+    opacityOut: 0.05,
+    opacitySpeed: 6,
+    fov: 800,
+    speed: 0.2,
+    fontFamily: 'Oswald, Arial, sans-serif',
+    fontSize: '15',
+    fontColor: '#fff',
+    fontWeight: 'normal',//bold
+    fontStyle: 'normal',//italic 
+    fontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+    fontToUpperCase: true,
+    tooltipFontFamily: 'Oswald, Arial, sans-serif',
+    tooltipFontSize: '11',
+    tooltipFontColor: '#fff',
+    tooltipFontWeight: 'normal',//bold
+    tooltipFontStyle: 'normal',//italic 
+    tooltipFontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+    tooltipFontToUpperCase: false,
+    tooltipTextAnchor: 'left',
+    tooltipDiffX: 0,
+    tooltipDiffY: 10
+};
+$( '#tagcloud' ).svg3DTagCloud( settings );
+		} );
+        
+    </script>
+
 </head>
-<body>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<img src="" class="sb-img js-img" data-hastag="gachalife"/>
-<p>YOU</p>
-<!-- partial:index.partial.html -->
-<button class="btn third"><a style="color: #ffffff" href="https://play.google.com/store/apps/details?id=online.creators.chat" class="twitter-follow-button" data-show-count="false" data-size="large">New chat</a></button>
-<p>Inspiration for new ways to make interactive!</p>
 
-<!-- partial -->
-  
-  <script type="text/javascript">
-$(document).ready(function(){
-  var photos,
-      i = 0,
-      id = null,
-      newPhotos;
-  
-  ajaxCall();
-  
-  function ajaxCall() {
-    var hastag = $(".js-img").data("hastag")
-    
-    $.ajax({
-      url: "https://www.instagram.com/explore/tags/"+hastag+"/?__a=1",
-      dataType: "json",
-      success: function(data) {
-        photos = data.graphql.hashtag.edge_hashtag_to_media.edges;
-        setTimeout(start, 500);
-      },
-      error: function() {
-        setTimeout(ajaxCall, 60000);
-      }
-    });
-  }
-  function start() {
-    i = 0;
-    $(".js-img").attr("src", photos[i].node.display_url);
-    i++;
-    id = setInterval(function(){
-      $(".js-img").attr("src", photos[i].node.display_url);
-      i++;
-      if(i === photos.length) {
-        i = 0;
-        ajaxCall();
-        clearInterval(id);
-      }
-    }, 1000);
-  }
-});
-</script>
+<body>
+
+   <div id='tagcloud'></div>
+
 </body>
-</html>
